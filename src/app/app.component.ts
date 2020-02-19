@@ -13,6 +13,15 @@ defaultQuestion = 'pet';
 answer = '';
 genders = ['Muško', 'Žensko'];
 
+user = {
+  username: '',
+  email: '',
+  tajnoPitanje: '',
+  odgovor: '',
+  gender: ''
+};
+subbmited = false;
+
   suggestUserName() {
     const suggestedName = 'Superuser';
 
@@ -37,6 +46,12 @@ genders = ['Muško', 'Žensko'];
   onSubmit(form: NgForm) {
 
     console.log(this.signupForm);
+    this.subbmited = true;
+    this.user.username = this.signupForm.value.userData.username;
+    this.user.email = this.signupForm.value.userData.email;
+    this.user.tajnoPitanje = this.signupForm.value.secret;
+    this.user.odgovor = this.signupForm.value.quietionAnswer;
+    this.user.gender = this.signupForm.value.dataGender;
   }
 
 
