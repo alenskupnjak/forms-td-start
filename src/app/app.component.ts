@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -9,9 +9,12 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
 
 @ViewChild('f', {static: true}) signupForm: NgForm;
+// @ViewChild('frm', {static: true}) podaciForme: NgForm;
 defaultQuestion = 'pet';
 answer = '';
 genders = ['Muško', 'Žensko'];
+pretplata = ['Basic', 'Advanced', 'Pro'];
+pocetnaVrijednost = 'Advanced';
 
 user = {
   username: '',
@@ -20,11 +23,19 @@ user = {
   odgovor: '',
   gender: ''
 };
+
+mojiPodaci = {
+  mojeEmail: '',
+  dugmad: '',
+  Password: '',
+};
+
 subbmited = false;
+
+
 
   suggestUserName() {
     const suggestedName = 'Superuser';
-
     // this.signupForm.setValue({
     //   userData: {
     //   username: suggestedName,
@@ -37,14 +48,14 @@ subbmited = false;
 
     this.signupForm.form.patchValue({
      userData: {
-      username: suggestedName
-     }
+      username: suggestedName,
+    },
+    dataGender: 'Muško'
     });
 
   }
 
-  onSubmit(form: NgForm) {
-
+  onSubmit() {
     console.log(this.signupForm);
     this.subbmited = true;
     this.user.username = this.signupForm.value.userData.username;
@@ -52,6 +63,14 @@ subbmited = false;
     this.user.tajnoPitanje = this.signupForm.value.secret;
     this.user.odgovor = this.signupForm.value.quietionAnswer;
     this.user.gender = this.signupForm.value.dataGender;
+    this.signupForm.reset();
+  }
+
+  mojaForma(form: NgForm) {
+    console.log(form);
+    this.mojiPodaci.mojeEmail = form.value.mojeEmail;
+    this.mojiPodaci.dugmad = form.value.dataPretplata;
+    this.mojiPodaci.Password = form.value.pass;
   }
 
 
