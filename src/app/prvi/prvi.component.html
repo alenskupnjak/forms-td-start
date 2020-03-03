@@ -27,11 +27,11 @@
             required
             email
             #emailUnos="ngModel">
-            <span class="help-block" *ngIf="!emailUnos.valid && emailUnos.touched">Pleas enter a valid email</span>
+            <span class="help-block" *ngIf="!emailUnos.valid && emailUnos.touched" style="color: red;">Pleas enter a valid email</span>
           </div>
 
         </div>
-          <p *ngIf="!userData.valid && userData.touched"> Podaci nisu dobri!</p>
+          <p *ngIf="!userData.valid && userData.touched" style="color: red;"> Uneseni podaci nisu dobri!</p>
 
         <div class="form-group">
           <label for="secret">Secret Questions</label>
@@ -72,9 +72,11 @@
 
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
       </form>
+        <h3>Nakon dobro ispunjene forme pojaviti će se skriveni ulazni podaci ispod</h3>
     </div>
   </div>
 
+  
   <div class="row" *ngIf="subbmited">
     <div class="col-xs-12">
       <h3> Your data </h3>
@@ -86,102 +88,9 @@
     </div>
   </div>
 
-</div>
-
-
-<div class="container">
-  <!-- Add a Form with the following Inputs (and Validators)
-       1) Mail address (should not be empty and should be an email address)
-       2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
-          Set "Advanced" as Default
-       3) A Password field (should not be empty)
-       field)
-       4) A Submit Button
-
-       Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
-
-       Upon submitting the form, you should simply print the Value of the Form to the Console.
-       Optionally, display it in your template.
-  -->
-
-
-  <div class="row">
-    <h2>-------Moj rad --------------</h2>
-    <div>
-      <form (ngSubmit)="mojaForma(frm)" #frm="ngForm">
-
-          <div class="form-group">
-            <label for="mojeEmail">Mail</label>
-            <input
-            type="email"
-            id="mojeEmail"
-            class="form-control"
-            ngModel
-            name="mojeEmail"
-            required
-            email
-            #mojEmailUnos="ngModel"
-            ><span class="help-block" *ngIf="!mojEmailUnos.valid && mojEmailUnos.touched">Upisati ispravnu mail adresu</span>
-          </div>
-
-
-          <div class="form-group">
-            <label for="Pretplata">Odaberi pretplatu</label>
-              <select type="button"
-              name="Pretplata"
-              id="Pretplata"
-              [ngModel]= "pocetnaVrijednost"
-              class="form-control">
-                <option *ngFor=" let data of pretplata"
-                [value]="data">{{data}}</option>
-              </select>
-          </div>
-
-            <div>
-                <p>Dugmad</p>
-
-            </div>
-          <div class="radio" *ngFor="let dataPretplata of pretplata">
-              <label>
-                <input
-                type="radio"
-                name="dataPretplata"
-                [ngModel] = pocetnaVrijednost
-                [value]="dataPretplata"
-                required
-                >
-                {{dataPretplata}}
-              </label>
-
-          </div>
-
-          <div class="form-group">
-            <label for="pass">Password</label>
-            <input
-            type="password"
-            id="pass"
-            class="form-control"
-            name="pass"
-            ngModel
-            required
-            #pass="ngModel">
-            <span class="help-block" *ngIf="!pass.valid && pass.touched">Upisi ispravan password</span>
-          </div>
-          <button class="btn btn-warning" type="submit" [disabled]="!frm.valid">Potvrdi</button>
-      </form>
-
-
-    </div>
-        <div class="row">
-           <div class="col-xs-12">
-             <h3> Moji podaci</h3>
-            <p>Username: {{mojiPodaci.mojeEmail}}</p>
-            <p>Dugme: {{mojiPodaci.dugmad}}</p>
-            <p>Pass: {{mojiPodaci.Password}}</p>
-      </div>
-    </div>
-  </div>
 
 
 </div>
+
+
 
